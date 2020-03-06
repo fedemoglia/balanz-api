@@ -110,7 +110,13 @@
 			"name": "Dólar",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "https://www.balanz.com/api/cotizacionmoneda/2",
 					"protocol": "https",
