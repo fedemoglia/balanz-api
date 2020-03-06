@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "e6a422b8-da43-407d-9003-84dbb8a0354f",
+		"name": "Balanz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a97e6c4-aeb6-4f9a-b8e4-9fee500d775a",
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"token\", jsonData.AccessToken);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"user\": \"{{username}}\",\n        \"pass\": \"{{password}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://clientes.balanz.com/api/v1/login",
+					"protocol": "https",
+					"host": [
+						"clientes",
+						"balanz",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Estado de cuenta",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clientes.balanz.com/api/v1/estadodecuenta/17478?Fecha=20200305",
+					"protocol": "https",
+					"host": [
+						"clientes",
+						"balanz",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"estadodecuenta",
+						"17478"
+					],
+					"query": [
+						{
+							"key": "Fecha",
+							"value": "20200305"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dólar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.balanz.com/api/cotizacionmoneda/2",
+					"protocol": "https",
+					"host": [
+						"www",
+						"balanz",
+						"com"
+					],
+					"path": [
+						"api",
+						"cotizacionmoneda",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
